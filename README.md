@@ -49,8 +49,14 @@ pillow==5.1.0
 3. Install this plugin
 4. Go the flow
 5. Click on the saved model
-6. In the right panel in the `other actions section`, click on `Export to ONNX` #TODO add image 
-7. Fill in the parameters (details below) #TODO add image 
+6. In the right panel in the `other actions section`, click on `Export to ONNX` 
+
+![](resource/doc/right_panel_saved_model_macro.png)
+
+7. Fill in the parameters (details below) 
+
+![](resource/doc/saved_model_macro_params.png)
+
 8. Click on `RUN MACRO`
 9. Click on `Download onnx model` to trigger the download. The model has also been added to the output folder #TODO add image 
 
@@ -69,8 +75,15 @@ pillow==5.1.0
 1. Put a .h5 model file obtained through Keras's model.save() method into a DSS Managed Folder
 2. Go to flow
 3. Click on the folder 
-4. In the right panel in the `other actions section`, click on `Export .h5 to ONNX` #TODO add image 
+4. In the right panel in the `other actions section`, click on `Export .h5 to ONNX` 
+
+![](resource/doc/right_panel_h5_macro.png)
+
 5. Fill in the parameters (details below) 
+
+
+![](resource/doc/h5_macro_params.png)
+
 6. Click on `RUN MACRO`
 7. Click on `Download onnx model` to trigger the download. The model has also been added to the output folder #TODO add image 
 
@@ -112,7 +125,10 @@ pillow==5.1.0
 6. Click on the `+ RECIPE > ONNX exporter` button
 7. Click on the `Convert saved model` option in the modal
 8. Choose the saved model you just trained as input and the folder you created as output
-9. Fill in the parameters on the recipe page (details below) #TODO add image 
+9. Fill in the parameters on the recipe page (details below) 
+
+
+![](resource/doc/saved_model_recipe_params.png)
 
 #### Available parameters
 
@@ -130,6 +146,8 @@ pillow==5.1.0
 4. In the right panel in the Plugin recipes section, click on `ONNX exporter` #TODO add image 
 5. Click on the `Convert Keras .h5 model` option in the modal
 5. Fill in the parameters (details below) 
+
+![](resource/doc/h5_recipe_params.png)
 
 #### Available parameters
 

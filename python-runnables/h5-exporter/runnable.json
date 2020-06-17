@@ -1,0 +1,89 @@
+{
+    "meta": {
+        "label": "Export .h5 to Onnx",
+        "description": "Export a Keras .h5 model to ONNX format. Model should have been exported with model.save()",
+        "icon": "icon-cloud-download"
+    },
+
+    "impersonate": true,
+    "paramsPythonSetup": "py/compute_files_in_folder_for_macro.py",
+    "paramsTemplate" : "template/h5-macro-form.html",
+    "paramsModule" : "app",
+    "params": [
+        {
+            "name": "input_folder_id",
+            "label": "Input folder",
+            "type": "FOLDER",
+            "description": "Folder where the h5 model is",
+            "mandatory": true
+        },
+        {
+            "name": "model_path",
+            "label": "Model path",
+            "type": "SELECT",
+            "getChoicesFromPython": true,
+            "description": "Name of the h5 model to convert",
+            "mandatory": true
+        },
+        {
+            "name": "output_folder_id",
+            "label": "Output folder (optional)",
+            "type": "FOLDER",
+            "description": "Folder where the onnx model will be stored",
+            "mandatory": false
+        },
+        {
+            "name": "output_model_path",
+            "label": "Output model path",
+            "type": "STRING",
+            "description": "Path where the onnx model will be stored",
+            "mandatory": true
+        },
+        {
+            "name": "overwrite_output_model",
+            "label": "Overwrite output model",
+            "type": "BOOLEAN",
+            "description": "Overwrite output model if path exists",
+            "defaultValue": false,
+            "mandatory": true
+        },
+        {
+            "name": "show_batch_size",
+            "label": "Fixed batch size",
+            "description": "Use if your runtime does not support dynamic shape",
+            "type": "BOOLEAN",
+            "defaultValue": false,
+            "mandatory": false
+        },
+        {
+            "name": "batch_size",
+            "label": "Batch size",
+            "type": "INT",
+            "defaultValue": "50",
+            "mandatory": false,
+            "visibilityCondition" : "model.show_batch_size"
+        },
+        {
+            "name": "float_32",
+            "label": "Force input/output to Float (32 bits)",
+            "description": "Uncheck if your runtime supports Double (64 bits)",
+            "type": "BOOLEAN",
+            "defaultValue": true,
+            "mandatory": false
+        }
+    ],
+
+    "permissions": ["WRITE_CONF"],
+    "resultType": "URL",
+    "resultLabel" : "Download onnx model",
+    "macroRoles": [
+     
+       {
+            "type": "MANAGED_FOLDER",
+            "targetParamsKey": "input_folder_id"
+        },
+        {
+            "type": "PROJECT_MACROS"
+        }
+    ]
+}

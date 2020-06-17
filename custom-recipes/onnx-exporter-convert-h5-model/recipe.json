@@ -1,0 +1,88 @@
+{   
+    "meta": {
+        "label": "Convert Keras .h5 model",
+        "description": "Convert Keras .h5 model to onnx format and save it in a folder. Model should have been exported with model.save()",
+        "icon": "icon-cloud-download"
+    },
+    "kind": "PYTHON",
+    "selectableFromFolder": "input_folder_id",
+    "paramsTemplate" : "template/h5-recipe-form.html",
+    "paramsModule" : "app",
+    "inputRoles": [
+        {
+            "name": "input_folder_id",
+            "label": "Input folder",
+            "description": "Folder where the h5 file is",
+            "arity": "UNARY",
+            "required": true,
+            "acceptsDataset" : false,
+            "acceptsManagedFolder": true
+        }
+    ],
+    
+    "outputRoles": [
+        {
+            "name": "output_folder_id",
+            "label": "Output folder",
+            "description": "Folder where the onnx file will be stored",
+            "arity": "UNARY",
+            "required": true,
+            "acceptsDataset" : false,
+            "acceptsManagedFolder": true
+        }
+    ],
+    "paramsPythonSetup": "py/compute_files_in_folder.py",
+    "params": [
+        {
+            "name": "model_path",
+            "label": "Model path",
+            "type": "SELECT",
+            "getChoicesFromPython": true,
+            "description": "Name of the h5 model to convert",
+            "mandatory": true
+        },
+        {
+            "name": "output_model_path",
+            "label": "Output model path",
+            "type": "STRING",
+            "defaultValue": "/model.onnx",
+            "description": "Path where the onnx model will be stored",
+            "mandatory": true
+        },
+        {
+            "name": "overwrite_output_model",
+            "label": "Overwrite if exists",
+            "type": "BOOLEAN",
+            "description": "Overwrite output model if path exists",
+            "defaultValue": false,
+            "mandatory": true
+        },
+        {
+            "name": "show_batch_size",
+            "label": "Fixed batch size",
+            "description": "Use if your runtime does not support dynamic shape",
+            "type": "BOOLEAN",
+            "defaultValue": false,
+            "mandatory": false
+        },
+        {
+            "name": "batch_size",
+            "label": "Batch size",
+            "type": "INT",
+            "defaultValue": "50",
+            "mandatory": false,
+            "visibilityCondition" : "model.show_batch_size"
+        },
+        {
+            "name": "float_32",
+            "label": "Force input/output to Float (32 bits)",
+            "description": "Uncheck if your runtime supports Double (64 bits)",
+            "type": "BOOLEAN",
+            "defaultValue": true,
+            "mandatory": false
+        }
+    ],
+
+    "resourceKeys": []
+
+}

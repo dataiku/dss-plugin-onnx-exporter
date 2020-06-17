@@ -1,0 +1,80 @@
+{
+    "meta": {
+        "label": "Export to Onnx",
+        "description": "Export a Visual Deep Learning model to ONNX format",
+        "icon": "icon-cloud-download"
+    },
+
+    "impersonate": true,
+    "params": [
+        {
+            "name": "saved_model_id",
+            "label": "Saved model",
+            "type": "SAVED_MODEL",
+            "description": "Id of the saved model to convert to ONNX",
+            "mandatory": true
+        },
+         {
+            "name": "folder_id",
+            "label": "Output folder",
+            "type": "FOLDER",
+            "description": "Folder where the onnx model will be added",
+            "mandatory": true
+        },
+        {
+            "name": "output_model_path",
+            "label": "Output model path",
+            "type": "STRING",
+            "defaultValue": "/model.onnx",
+            "description": "Path where the onnx model will be stored",
+            "mandatory": true
+        },
+        {
+            "name": "overwrite_output_model",
+            "label": "Overwrite if exists",
+            "type": "BOOLEAN",
+            "description": "Overwrite output model if path exists",
+            "defaultValue": false,
+            "mandatory": true
+        },
+        {
+            "name": "show_batch_size",
+            "label": "Fixed batch size",
+            "type": "BOOLEAN",
+            "description": "Use if your runtime does not support dynamic shape",
+            "defaultValue": false,
+            "mandatory": false
+        },
+        {
+            "name": "batch_size",
+            "label": "Batch size",
+            "type": "INT",
+            "minI" : 0,
+            "defaultValue": "50",
+            "mandatory": false,
+            "visibilityCondition" : "model.show_batch_size"
+        },
+        {
+            "name": "float_32",
+            "label": "Force input/output to Float (32 bits)",
+            "description": "Uncheck if your runtime supports Double (64 bits)",
+            "type": "BOOLEAN",
+            "defaultValue": true,
+            "mandatory": false
+        }
+    ],
+
+    "permissions": ["WRITE_CONF"],
+    "resultType": "URL",
+    "resultLabel" : "Download onnx model",
+    "macroRoles": [
+     
+       {
+            "type": "SAVED_MODEL",
+            "targetParamsKey": "saved_model_id"
+        },
+        {
+            "type": "PROJECT_MACROS"
+        }
+    ]
+}

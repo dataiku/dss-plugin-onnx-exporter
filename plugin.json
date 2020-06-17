@@ -1,0 +1,12 @@
+{
+    "id": "onnx-exporter",
+    "version": "0.0.1",
+    "meta": {
+        "label": "Onnx exporter",
+        "description": "Plugin to export Deep Learning models to ONNX format",
+        "author": "Dataiku",
+        "icon": "icon-cloud-download",
+        "tags": ["Deep Learning", "Format"],
+        "url": ""
+    }
+}

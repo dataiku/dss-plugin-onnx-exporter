@@ -1,0 +1,18 @@
+<div ng-controller="h5RecipeController">
+    <form class="dkuform-horizontal recipe-settings-section2">
+        <div class="control-group">
+            <label class="control-label">Model path</label>
+            <div class="controls">
+                <div>
+                    <select dku-bs-select="" ng-model="config.model_path"
+                            ng-options="sv.value as sv.label for sv in model_path_choices">
+                    </select>
+                    <span class="help-inline">
+                        Name of the h5 model to convert
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div ng-include="templatePath + 'h5-form.html'"></div>
+    </form>
+</div>

@@ -1,0 +1,45 @@
+<div ng-controller="h5ExporterController">
+    <form class="dkuform-horizontal recipe-settings-section2">
+        <div>
+            <div class="control-group">
+                <label class="control-label">Input folder</label>
+                <div class="controls">
+                    <div>
+                        <select dku-bs-select="" ng-model="config.input_folder_id"
+                                ng-options="x.ref as x.displayName for x in accessibleFolders">
+                        </select>
+                        <span class="help-inline">
+                            Folder where the h5 model is
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Model path</label>
+                <div class="controls">
+                    <div>
+                        <select dku-bs-select="" ng-model="config.model_path"
+                                ng-options="sv.value as sv.label for sv in model_path_choices">
+                        </select>
+                        <span class="help-inline">
+                            Name of the h5 model to convert
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Output folder (empty=inplace)</label>
+                <div class="controls">
+                    <div>
+                        <select dku-bs-select="" ng-model="config.output_folder_id"
+                                ng-options="x.ref as x.displayName for x in accessibleFoldersPlusEmpty">
+                        </select>
+                        <span class="help-inline">
+                            Folder where the onnx model will be stored
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

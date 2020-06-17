@@ -1,0 +1,80 @@
+{   "meta": {
+        "label": "Convert saved model",
+        "description": "Convert saved model to onnx format and save it in a folder",
+        "icon": "icon-cloud-download"
+    },
+    "kind": "PYTHON",
+    "selectableFromSavedModel" : "saved_model_id",
+    "inputRoles": [
+        {
+            "name": "saved_model_id",
+            "label": "Saved model",
+            "description": "Saved model to convert",
+            "arity": "UNARY",
+            "required": true,
+            "acceptsDataset" : false,
+            "acceptsSavedModel": true
+        }
+     
+    ],
+
+    "outputRoles": [
+        {
+            "name": "folder_id",
+            "label": "Output folder",
+            "description": "Folder where the onnx file will be stored",
+            "arity": "UNARY",
+            "required": true,
+            "acceptsDataset" : false,
+            "acceptsManagedFolder": true
+        }
+        
+    ],
+
+    "params": [
+        {
+            "name": "output_model_path",
+            "label": "Output model path",
+            "type": "STRING",
+            "defaultValue": "/model.onnx",
+            "description": "Path where the onnx model will be stored",
+            "mandatory": true
+        },
+        {
+            "name": "overwrite_output_model",
+            "label": "Overwrite if exists",
+            "type": "BOOLEAN",
+            "description": "Overwrite output model if path exists",
+            "defaultValue": false,
+            "mandatory": true
+        },
+        {
+            "name": "show_batch_size",
+            "label": "Fixed batch size",
+            "type": "BOOLEAN",
+            "description": "Use if your runtime does not support dynamic shape",
+            "defaultValue": false,
+            "mandatory": false
+        },
+        {
+            "name": "batch_size",
+            "label": "Batch size",
+            "type": "INT",
+            "minI" : 0,
+            "defaultValue": "50",
+            "mandatory": false,
+            "visibilityCondition" : "model.show_batch_size"
+        },
+        {
+            "name": "float_32",
+            "label": "Force input/output to Float (32 bits)",
+            "description": "Uncheck if your runtime supports Double (64 bits)",
+            "type": "BOOLEAN",
+            "defaultValue": true,
+            "mandatory": false
+        }
+    ],
+
+    "resourceKeys": []
+
+}

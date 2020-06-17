@@ -1,0 +1,57 @@
+<div class="control-group">
+    <label class="control-label">Output model path</label>
+    <div class="controls">
+        <div>
+            <input type="text" ng-model="config.output_model_path" next-on-enter="">
+            <span class="help-inline"> Path where the onnx model will be stored </span>
+        </div>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">Overwrite if exists</label>
+    <div class="controls">
+        <div>
+            <span class="input-value">
+                <input ng-model="config.overwrite_output_model" type="checkbox">
+            </span>
+            <span class="help-inline">Overwrite output model if path exists</span>
+        </div>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">Fixed batch size</label>
+    <div class="controls">
+        <div>
+            <span class="input-value">
+                <input ng-model="config.show_batch_size" type="checkbox">
+            </span>
+            <span class="help-inline">
+                Use if your runtime does not support dynamic shape
+            </span>
+        </div>
+    </div>
+</div>
+<div class="control-group" ng-show="config.show_batch_size">
+    <label class="control-label">Batch size</label>
+    <div class="controls">
+        <div>
+            <span class="input-value">
+                <input force-integer min="0" type="number" ng-model="config.batch_size" step="1" class="input-mini" ng-required="false" next-on-enter ng-disabled="disabled"/>
+            </span>
+            
+        </div>
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">Force input/output to Float (32 bits)</label>
+    <div class="controls">
+        <div>
+            <span class="input-value">
+                <input ng-model="config.float_32" type="checkbox">
+            </span>
+            <span class="help-inline">
+                Uncheck if your runtime supports Double (64 bits)
+            </span>
+        </div>
+    </div>
+</div>

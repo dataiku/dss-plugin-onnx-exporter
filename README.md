@@ -22,9 +22,9 @@ This plugin contains one recipe and one macro for each conversion type.
 
 ## How to use the Macros ?
 
-### Saved model to onnx macro
+### Convert saved model to onnx macro
 
-1. Create (if you don't already have it) a DSS python3 code env 
+1. Create (if you don't already have one) a DSS python3 code env 
 with the following packages (ie packages needed for Visual Deep Learning with keras == 2.1.6):
 ```tensorflow==1.8.0
 keras==2.1.6
@@ -41,15 +41,93 @@ pillow==5.1.0
 3. Install this plugin
 4. Go the DSS Flow
 5. Click on the saved model
-6. In the right panel in the other actions section, click on `export to ONNX` #TODO add image 
-7. Fill in the parameters #TODO add image 
+6. In the right panel in the `other actions section`, click on `Export to ONNX` #TODO add image 
+7. Fill in the parameters (details below) #TODO add image 
 8. Click on `RUN MACRO`
-9. Click on `Download onnx model` #TODO add image 
+9. Click on `Download onnx model` to trigger the download. The model has also been added to the output folder #TODO add image 
 
 #### Available parameters
 
 - `Saved model` (DSS saved model): Visual Deep Learning model trained in DSS to convert
-- `Output Folder` (DSS managed folder): Folder where the onnx model will be added
+- `Output folder` (DSS managed folder): Folder where the onnx model will be added
+- `Output model path` (String): Path where the onnx model will be stored
+- `Overwrite if exists` (boolean): Whether the model should overwrite the existing file at same path (if it already exists)
+- `Fixed batch size` (boolean): Some runtimes do not support dynamic batch size and thereefore the size should be specified during export.
+- `Batch size` (int) [optional]: Batch size of the model's input
+- `Force input/output to Float (32 bits)` (int): Some runtimes do not support `Double`. Uncheck if your runtime supports `Double`
+
+### Convert Keras .h5 model to onnx macro
+
+1. Put a .h5 model file obtained through Keras's model.save() method into a DSS Managed Folder
+2. Go to DSS flow
+3. Click on the folder 
+4. In the right panel in the `other actions section`, click on `Export .h5 to ONNX` #TODO add image 
+5. Fill in the parameters (details below) 
+6. Click on `RUN MACRO`
+7. Click on `Download onnx model` to trigger the download. The model has also been added to the output folder #TODO add image 
+
+#### Available parameters
+
+- `Input folder` (DSS managed folder): Folder where the .h5 model is
+- `Model path`(String): Path to the .h5 model to convert
+- `Output folder` (DSS managed folder) [optional]: Folder where the onnx model will be added. 
+If `Output folder` is left empty the model is added to the input folder.
+- `Output model path` (String): Path where the onnx model will be stored
+- `Overwrite if exists` (boolean): Whether the model should overwrite the existing file at same path (if it already exists)
+- `Fixed batch size` (boolean): Some runtimes do not support dynamic batch size and thereefore the size should be specified during export.
+- `Batch size` (int) [optional]: Batch size of the model's input
+- `Force input/output to Float (32 bits)` (int): Some runtimes do not support `Double`. Uncheck if your runtime supports `Double`
+
+The macros are also available in the `Macro` menu of a project.
+
+## How to use the Recipes ?
+
+### Convert saved model to onnx recipe
+
+1. Create (if you don't already have one) a DSS python3 code env 
+with the following packages (ie packages needed for Visual Deep Learning with keras == 2.1.6):
+```tensorflow==1.8.0
+keras==2.1.6
+scikit-learn>=0.20,<0.21
+scipy>=1.1,<1.2
+statsmodels>=0.9,<0.10
+jinja2>=2.10,<2.11
+flask>=1.0,<1.1
+h5py==2.7.1
+pillow==5.1.0
+```
+
+2. Train a Visual Deep learning model in DSS with this code env
+3. Create a managed folder by clicking on `+ DATASET > Folder`
+4. Install this plugin
+5. Go the DSS Flow
+6. Click on the `+ RECIPE > ONNX exporter` button
+7. Click on the `Convert saved model` option in the modal
+8. Choose the saved model you just trained as input and the folder you created as output
+9. Fill in the parameters on the recipe page (details below) #TODO add image 
+
+#### Available parameters
+
+- `Output model path` (String): Path where the onnx model will be stored
+- `Overwrite if exists` (boolean): Whether the model should overwrite the existing file at same path (if it already exists)
+- `Fixed batch size` (boolean): Some runtimes do not support dynamic batch size and thereefore the size should be specified during export.
+- `Batch size` (int) [optional]: Batch size of the model's input
+- `Force input/output to Float (32 bits)` (int): Some runtimes do not support `Double`. Uncheck if your runtime supports `Double`
+
+### Convert Keras .h5 model to onnx macro
+
+1. Put a .h5 model file obtained through Keras's model.save() method into a DSS Managed Folder
+2. Go to DSS flow
+3. Click on the folder 
+4. In the right panel in the Plugin recipes section, click on `ONNX exporter` #TODO add image 
+5. Click on the `Convert Keras .h5 model` option in the modal
+5. Fill in the parameters (details below) 
+
+#### Available parameters
+
+- `Model path`(String): Path to the .h5 model to convert
+- `Output folder` (DSS managed folder) [optional]: Folder where the onnx model will be added. 
+If `Output folder` is left empty the model is added to the input folder.
 - `Output model path` (String): Path where the onnx model will be stored
 - `Overwrite if exists` (boolean): Whether the model should overwrite the existing file at same path (if it already exists)
 - `Fixed batch size` (boolean): Some runtimes do not support dynamic batch size and thereefore the size should be specified during export.

@@ -2,15 +2,15 @@
 
 With this Dataiku DSS plugin one can export `Visual Deep Learning` and `Keras .h5 models` to ONNX format
 
-## When to use this plugin ?
-
-This plugin aims at offering an easy way to deploy Deep learning models to various machines and environment with the onnx runtime. 
-You can learn about all the languages, architectures and hardware accelaration available [here](https://microsoft.github.io/onnxruntime/)
-
 ## What is ONNX ?
 
 ONNX is an open format built to represent machine learning models. ONNX defines a common set of operators - the building blocks of machine learning and deep learning models - and a common file format 
 to enable AI developers to use models with a variety of frameworks, tools, runtimes, and compilers. [More info here](https://onnx.ai/about.html)
+
+## Why use this plugin ?
+
+This plugin aims at offering an easy way to deploy Deep learning models to various machines and environments with the onnx runtime. 
+You can learn about all the languages, architectures and hardware accelaration supported by onnx runtime [here](https://microsoft.github.io/onnxruntime/)
 
 ## Description
 
@@ -20,11 +20,19 @@ This DSS plugin offers the conversion of two kinds of models:
 
 This plugin contains one recipe and one macro for each conversion type.
 
+Visual Deep Learning models trained with DSS: 
+- [Convert saved model to onnx macro](#convert-saved-model-to-onnx-macro)
+- [Convert saved model to onnx recipe](#convert-saved-model-to-onnx-recipe)
+
+Keras `.h5 models`:
+- [Convert Keras .h5 model to onnx macro](#convert-keras-h5-model-to-onnx-macro)
+- [Convert Keras .h5 model to onnx recipe](#convert-keras-h5-model-to-onnx-recipe)
+
 ## How to use the Macros ?
 
 ### Convert saved model to onnx macro
 
-1. Create (if you don't already have one) a DSS python3 code env 
+1. (If you don't already have one) create a DSS python3 code env 
 with the following packages (ie packages needed for Visual Deep Learning with keras == 2.1.6):
 ```tensorflow==1.8.0
 keras==2.1.6
@@ -37,9 +45,9 @@ h5py==2.7.1
 pillow==5.1.0
 ```
 
-2. Train a Visual Deep learning model in DSS with this code env
+2. Train a Visual Deep learning model in DSS with this code env. [Here](https://academy.dataiku.com/introduction-to-deep-learning-with-code-open/513277) is a tutorial
 3. Install this plugin
-4. Go the DSS Flow
+4. Go the flow
 5. Click on the saved model
 6. In the right panel in the `other actions section`, click on `Export to ONNX` #TODO add image 
 7. Fill in the parameters (details below) #TODO add image 
@@ -59,7 +67,7 @@ pillow==5.1.0
 ### Convert Keras .h5 model to onnx macro
 
 1. Put a .h5 model file obtained through Keras's model.save() method into a DSS Managed Folder
-2. Go to DSS flow
+2. Go to flow
 3. Click on the folder 
 4. In the right panel in the `other actions section`, click on `Export .h5 to ONNX` #TODO add image 
 5. Fill in the parameters (details below) 
@@ -100,7 +108,7 @@ pillow==5.1.0
 2. Train a Visual Deep learning model in DSS with this code env
 3. Create a managed folder by clicking on `+ DATASET > Folder`
 4. Install this plugin
-5. Go the DSS Flow
+5. Go the flow
 6. Click on the `+ RECIPE > ONNX exporter` button
 7. Click on the `Convert saved model` option in the modal
 8. Choose the saved model you just trained as input and the folder you created as output
@@ -114,10 +122,10 @@ pillow==5.1.0
 - `Batch size` (int) [optional]: Batch size of the model's input
 - `Force input/output to Float (32 bits)` (int): Some runtimes do not support `Double`. Uncheck if your runtime supports `Double`
 
-### Convert Keras .h5 model to onnx macro
+### Convert Keras .h5 model to onnx recipe
 
 1. Put a .h5 model file obtained through Keras's model.save() method into a DSS Managed Folder
-2. Go to DSS flow
+2. Go to flow
 3. Click on the folder 
 4. In the right panel in the Plugin recipes section, click on `ONNX exporter` #TODO add image 
 5. Click on the `Convert Keras .h5 model` option in the modal

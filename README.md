@@ -10,7 +10,7 @@ to enable AI developers to use models with a variety of frameworks, tools, runti
 ## Why use this plugin ?
 
 This plugin aims at offering an easy way to deploy Deep learning models to various machines and environments with the onnx runtime. 
-You can learn about all the languages, architectures and hardware accelaration supported by onnx runtime [here](https://microsoft.github.io/onnxruntime/)
+You can learn about all the languages, architectures and hardware acceleration supported by onnx runtime [here](https://microsoft.github.io/onnxruntime/)
 
 ## Description
 

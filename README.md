@@ -70,7 +70,7 @@ pillow==5.1.0
 - `Overwrite if exists` (boolean): Whether the model should overwrite the existing file at same path (if it already exists)
 - `Fixed batch size` (boolean): Some runtimes do not support dynamic batch size and thereefore the size should be specified during export.
 - `Batch size` (int) [optional]: Batch size of the model's input
-- `Force input/output to Float (32 bits)` (int): Some runtimes do not support `Double`. Uncheck if your runtime supports `Double`
+- `Force input/output to Float (32 bits)` (boolean): Some runtimes do not support `Double`. Uncheck if your runtime supports `Double`
 
 ### Convert Keras .h5 model to ONNX macro
 

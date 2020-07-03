@@ -58,7 +58,9 @@ pillow==5.1.0
 ![](resource/doc/saved_model_macro_params.png)
 
 8. Click on `RUN MACRO`
-9. Click on `Download ONNX model` to trigger the download. The model has also been added to the output folder #TODO add image 
+9. Click on `Download ONNX model` to trigger the download. The model has also been added to the output folder  
+
+![](resource/doc/download_macro_result.png)
 
 #### Available parameters
 
@@ -85,7 +87,9 @@ pillow==5.1.0
 ![](resource/doc/h5_macro_params.png)
 
 6. Click on `RUN MACRO`
-7. Click on `Download onnx model` to trigger the download. The model has also been added to the output folder #TODO add image 
+7. Click on `Download onnx model` to trigger the download. The model has also been added to the output folder 
+
+![](resource/doc/download_macro_result.png)
 
 #### Available parameters
 
@@ -143,7 +147,9 @@ pillow==5.1.0
 1. Put a .h5 model file obtained through Keras's model.save() method into a DSS Managed Folder
 2. Go to flow
 3. Click on the folder 
-4. In the right panel in the Plugin recipes section, click on `ONNX exporter` #TODO add image 
+4. In the right panel in the Plugin recipes section, click on `ONNX exporter`  
+![](resource/doc/plugin_recipe_section.png)
+
 5. Click on the `Convert Keras .h5 model` option in the modal
 6. Fill in the parameters (details below) 
 

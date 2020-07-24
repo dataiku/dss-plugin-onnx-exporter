@@ -1,7 +1,7 @@
 {
     "meta": {
-        "label": "Export .h5 to Onnx",
-        "description": "Export a Keras .h5 model to ONNX format. Model should have been exported with model.save()",
+        "label": "Download as .onnx",
+        "description": "Download a Keras .h5 model to ONNX format. Model should have been exported with model.save()",
         "icon": "icon-cloud-download"
     },
 

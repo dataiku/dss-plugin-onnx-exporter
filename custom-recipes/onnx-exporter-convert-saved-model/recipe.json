@@ -1,6 +1,6 @@
 {   "meta": {
-        "label": "Convert saved model",
-        "description": "Convert saved model to onnx format and save it in a folder",
+        "label": "Convert Visual Deep Learning saved model",
+        "description": "Convert Visual Deep Learning saved model to onnx format and save it in a folder",
         "icon": "icon-cloud-download"
     },
     "kind": "PYTHON",

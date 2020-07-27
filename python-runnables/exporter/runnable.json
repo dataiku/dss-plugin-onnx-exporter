@@ -1,7 +1,7 @@
 {
     "meta": {
-        "label": "Download as .onnx",
-        "description": "Download a Visual Deep Learning model as ONNX format",
+        "label": "Download as ONNX",
+        "description": "Download a Visual Deep Learning model as ONNX",
         "icon": "icon-cloud-download"
     },
 

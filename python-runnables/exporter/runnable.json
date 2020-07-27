@@ -1,7 +1,7 @@
 {
     "meta": {
-        "label": "Export to Onnx",
-        "description": "Export a Visual Deep Learning model to ONNX format",
+        "label": "Download as ONNX",
+        "description": "Download a Visual Deep Learning model as ONNX",
         "icon": "icon-cloud-download"
     },
 

@@ -4,7 +4,7 @@ from keras2onnx import convert_keras
 from io import BytesIO
 from os.path import join as join_path
 from os.path import isfile
-from dataiku.doctor import constants
+from dataiku.core import doctor_constants as constants
 from dataiku.core.base import get_dip_home
 from distutils.version import LooseVersion
 import onnx
@@ -43,6 +43,7 @@ def add_batch_size(onnx_model, batch_size):
         for graph_input in onnx_model.graph.input:
             graph_input.type.tensor_type.shape.dim[0].ClearField('dim_param')
             graph_input.type.tensor_type.shape.dim[0].dim_value = batch_size
+        print("Correctly set batch size to: {}".format(batch_size))
 
 def force_type_to_float32(onnx_model):
     for graph_input in onnx_model.graph.input:
@@ -89,4 +90,4 @@ def get_active_version(model):
         return None
     else:
         return filtered[0]
-    
+ 

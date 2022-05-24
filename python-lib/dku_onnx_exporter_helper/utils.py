@@ -1,6 +1,6 @@
 from h5py import File
 from keras.models import load_model
-from keras2onnx import convert_keras
+from tf2onnx.convert import from_keras
 from io import BytesIO
 from os.path import join as join_path
 from os.path import isfile
@@ -17,20 +17,26 @@ def check_keras_version_from_path(model_path):
         with File(model_path) as model_h5:
             model_weights = model_h5["model_weights"]
             if "keras_version" in model_weights.attrs:
-                original_keras_version = LooseVersion(model_weights.attrs["keras_version"].decode())
+                keras_version = model_weights.attrs["keras_version"]
+                # Same trick as the keras lib itself for cross-compatibility :
+                # https://github.com/keras-team/keras/blob/master/keras/saving/hdf5_format.py#L215
+                if hasattr(keras_version, 'decode'):
+                    original_keras_version = LooseVersion(keras_version.decode('utf-8'))
+                else:
+                    original_keras_version = LooseVersion(keras_version)
     except Exception as e:
         raise ValueError('Could not extract the model weights from the .h5 file. : {}. Was it generated with the keras command model.save(...) ?'.format(e))
-        
-    if not(LooseVersion('2.1.6') <= original_keras_version <= LooseVersion('2.3.1')):
-        raise ValueError("The version of keras you are using  ({}) has compatibility issues with keras2onnx".format(original_keras_version))
+
+    if not(LooseVersion('2.0.6') <= original_keras_version):
+        raise ValueError("The version of keras you are using  ({}) has compatibility issues with tf2onnx".format(original_keras_version))
 
     
         
 def convert_from_keras_to_onnx(keras_model, batch_size, float_32):
     try:
-        onnx_model = convert_keras(keras_model)
+        onnx_model = from_keras(keras_model)[0]
     except Exception as e:
-        raise ValueError('Error while converting with keras2onnx: {}'.format(e))
+        raise ValueError('Error while converting with tf2onnx: {}'.format(e))
     add_batch_size(onnx_model, batch_size)
     if float_32:
         force_type_to_float32(onnx_model)
@@ -52,7 +58,7 @@ def force_type_to_float32(onnx_model):
         graph_output.type.tensor_type.elem_type = onnx.TensorProto.DataType.FLOAT
     
 def get_keras_model_from_folder(folder, path):
-    return try_load_model(get_model_file(folder, path))
+    return try_load_model(File(get_model_file(folder, path)))
 
 def try_load_model(path):
     try:

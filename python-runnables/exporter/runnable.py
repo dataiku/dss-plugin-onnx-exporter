@@ -47,7 +47,7 @@ class MyRunnable(Runnable):
 
     def run(self, progress_callback):
         """
-        Gets a saved model, converts it with keras2onnx, saves it back in the folder, builds a url for the download
+        Gets a saved model, converts it with tf2onnx, saves it back in the folder, builds a url for the download
         """
         
         keras_model = get_keras_model_from_saved_model(self.project_key, self.model)

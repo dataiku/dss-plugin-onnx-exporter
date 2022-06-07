@@ -32,19 +32,7 @@ Keras `.h5 models`:
 
 ### Convert saved model to ONNX macro
 
-1. (If you don't already have one) create a DSS python3 code environment 
-with the following packages (i.e. packages needed for Visual Deep Learning with keras==2.1.6):
-```tensorflow==1.8.0
-keras==2.1.6
-scikit-learn>=0.20,<0.21
-scipy>=1.1,<1.2
-statsmodels>=0.9,<0.10
-jinja2>=2.10,<2.11
-flask>=1.0,<1.1
-h5py==2.7.1
-pillow==5.1.0
-```
-
+1. (If you don't already have one) create a DSS python3 code environment, adding to it the Visual Deep Learning packages preset.
 2. Train a Visual Deep learning model in DSS with this code environment ([here](https://academy.dataiku.com/introduction-to-deep-learning-with-code-open/513277) is a tutorial to help you get started)
 3. Install this plugin
 4. Go the flow
@@ -109,19 +97,7 @@ The macros are also available in the `Macro` menu of a project.
 
 ### Convert saved model to ONNX recipe
 
-1. Create (if you don't already have one) a DSS python3 code env 
-with the following packages (i.e. packages needed for Visual Deep Learning with keras==2.1.6):
-```tensorflow==1.8.0
-keras==2.1.6
-scikit-learn>=0.20,<0.21
-scipy>=1.1,<1.2
-statsmodels>=0.9,<0.10
-jinja2>=2.10,<2.11
-flask>=1.0,<1.1
-h5py==2.7.1
-pillow==5.1.0
-```
-
+1. Create (if you don't already have one) a DSS python3 code environment, adding to it the Visual Deep Learning packages preset.
 2. Train a Visual Deep learning model in DSS with this code env
 3. Create a managed folder by clicking on `+ DATASET > Folder`
 4. Install this plugin

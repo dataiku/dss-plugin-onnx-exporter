@@ -34,7 +34,7 @@ class MyRunnable(Runnable):
 
     def run(self, progress_callback):
         """
-        Loads a h5 file, converts it with keras2onnx, saves it back in the folder, builds a url for the download
+        Loads a h5 file, converts it with tf2onnx, saves it back in the folder, builds a url for the download
         """
         check_keras_version(self.input_folder, self.model_path)
         keras_model = get_keras_model_from_folder(self.input_folder, self.model_path)

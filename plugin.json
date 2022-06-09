@@ -1,6 +1,6 @@
 {
     "id": "onnx-exporter",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "meta": {
         "label": "ONNX exporter",
         "description": "Plugin to export Deep Learning models to ONNX format",

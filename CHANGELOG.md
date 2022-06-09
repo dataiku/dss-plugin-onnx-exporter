@@ -1,7 +1,7 @@
 # Changelog
 
 
-## [Version 1.1.0](https://github.com/dataiku/dss-plugin-onnx-exporter/releases/tag/v1.1.0) - Bugfix release - 2021-10
+## [Version 1.1.0](https://github.com/dataiku/dss-plugin-onnx-exporter/releases/tag/v1.1.0) - Bugfix release - 2022-06
 
 - [Enhancement] Support for TensorFlow 2 models
 

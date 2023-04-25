@@ -1,7 +1,7 @@
 {
-  "acceptedPythonInterpreters": ["PYTHON37","PYTHON38","PYTHON39"],
+  "acceptedPythonInterpreters": ["PYTHON37","PYTHON38","PYTHON39", "PYTHON310", "PYTHON311"],
   "forceConda": false,
   "installCorePackages": true,
-  "corePackagesSet": "PANDAS11",
+  "corePackagesSet": "AUTO",
   "installJupyterSupport": false
 }

@@ -2,7 +2,7 @@
 
 ## [Version 1.1.0](https://github.com/dataiku/dss-plugin-onnx-exporter/releases/tag/v1.2.0) - Bugfix release - 2022-06
 
-- [Enhancement] Add support for recent python versions (3.10, 3.11)
+- [Enhancement] Add support for python 3.10
 - [Enhancement] Bump h5py version
 - [Fix] Setting default values of some form params for recipes & macros in the UI
 

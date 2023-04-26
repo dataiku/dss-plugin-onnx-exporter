@@ -1,6 +1,6 @@
 # Changelog
 
-## [Version 1.2.0](https://github.com/dataiku/dss-plugin-onnx-exporter/releases/tag/v1.2.0) - Bugfix release - 2022-06
+## [Version 1.2.0](https://github.com/dataiku/dss-plugin-onnx-exporter/releases/tag/v1.2.0) - Bugfix release - 2023-04
 
 - [Enhancement] Add support for python 3.10
 - [Enhancement] Bump h5py version

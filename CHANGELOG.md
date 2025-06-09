@@ -1,5 +1,9 @@
 # Changelog
 
+## [Version 1.2.1](https://github.com/dataiku/dss-plugin-onnx-exporter/releases/tag/v1.2.1) - Bugfix release - 2025-06
+
+- [Fix] Bump tf2onnx
+
 ## [Version 1.2.0](https://github.com/dataiku/dss-plugin-onnx-exporter/releases/tag/v1.2.0) - Bugfix release - 2023-04
 
 - [Enhancement] Add support for python 3.10

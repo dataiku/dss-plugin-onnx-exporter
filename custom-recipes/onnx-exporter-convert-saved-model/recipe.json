@@ -4,7 +4,7 @@
         "icon": "icon-cloud-download"
     },
     "kind": "PYTHON",
-    "selectableFromMLModel" : "saved_model_id",
+    "selectableFromSavedModel" : "saved_model_id",
     "inputRoles": [
         {
             "name": "saved_model_id",
@@ -13,9 +13,9 @@
             "arity": "UNARY",
             "required": true,
             "acceptsDataset" : false,
-            "acceptsMLModel": true
+            "acceptsSavedModel": true
         }
-
+     
     ],
 
     "outputRoles": [
@@ -28,7 +28,7 @@
             "acceptsDataset" : false,
             "acceptsManagedFolder": true
         }
-
+        
     ],
 
     "params": [

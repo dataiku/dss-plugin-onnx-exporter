@@ -1,5 +1,9 @@
 # Changelog
 
+## [Version 1.2.2](https://github.com/dataiku/dss-plugin-onnx-exporter/releases/tag/v1.2.2) - Bugfix release - 2026-01
+
+- [Fix] Only accepts ML saved models
+
 ## [Version 1.2.1](https://github.com/dataiku/dss-plugin-onnx-exporter/releases/tag/v1.2.1) - Bugfix release - 2025-06
 
 - [Fix] Bump tf2onnx

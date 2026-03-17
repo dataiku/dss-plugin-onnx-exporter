@@ -6,7 +6,7 @@
         "description": "Plugin to export Deep Learning models to ONNX format",
         "author": "Dataiku",
         "icon": "icon-cloud-download",
-        "tags": ["Deep Learning", "Format"],
+        "tags": ["Machine Learning", "Computer Vision", "Export"],
         "url": "https://www.dataiku.com/product/plugins/onnx-exporter/",
         "licenseInfo": "Apache Software License",
         "supportLevel": "NOT_SUPPORTED"

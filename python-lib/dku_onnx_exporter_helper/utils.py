@@ -51,7 +51,9 @@ def _convert_keras3_model(keras_model):
     input_signature = [tf.TensorSpec(shape=inp.shape, dtype=inp.dtype) for inp in keras_model.inputs]
     @tf.function(input_signature=input_signature)
     def model_fn(*args):
-        return keras_model(*args, training=False)
+        model_inputs = list(args) if len(args) > 1 else args[0]
+        return keras_model(model_inputs, training=False)
+
     return from_function(model_fn, input_signature=input_signature)[0]
 
 def add_batch_size(onnx_model, batch_size):

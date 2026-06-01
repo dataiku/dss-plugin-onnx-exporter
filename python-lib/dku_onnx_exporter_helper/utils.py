@@ -94,10 +94,11 @@ def get_keras_model_location_from_saved_model(project_key, model):
 
     for filename in [KERAS_MODEL_FILENAME_KERAS, KERAS_MODEL_FILENAME_H5]:
         model_location = join_path(model_folder, filename)
+        print("Searching for model at: ", model_location, "")
         if isfile(model_location):
             return model_location
 
-    raise ValueError("This saved model cannot be exported to ONNX. Exporting to ONNX is only supported for models trained with the visual Deep Learning")
+    raise ValueError("This saved model cannot be exported to ONNX - no DSS model file found. Exporting to ONNX is only supported for models trained with the visual Deep Learning")
 
 def get_model_file(folder, path):
     model_stream = folder.get_download_stream(path)

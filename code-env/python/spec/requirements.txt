@@ -1,5 +1,4 @@
 tf2onnx>=1.14,<1.17.1
 tensorflow>=2.11,<3.0
 h5py>=3.7,<4
-scikit-learn>=1.1
 packaging

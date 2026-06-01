@@ -1,13 +1,17 @@
 from h5py import File
 from keras.models import load_model
-from tf2onnx.convert import from_keras
+from tf2onnx.convert import from_keras, from_function
+import tensorflow as tf
+import keras as _keras_lib
 from io import BytesIO
 from os.path import join as join_path
 from os.path import isfile
-from dataiku.core import doctor_constants as constants
+from packaging.version import Version
 from dataiku.core.base import get_dip_home
-from distutils.version import LooseVersion
 import onnx
+
+KERAS_MODEL_FILENAME_H5 = "keras_model.h5"
+KERAS_MODEL_FILENAME_KERAS = "keras_model.keras"
 
 def check_keras_version(folder, model_path):
     check_keras_version_from_path(get_model_file(folder, model_path))
@@ -18,30 +22,40 @@ def check_keras_version_from_path(model_path):
             model_weights = model_h5["model_weights"]
             if "keras_version" in model_weights.attrs:
                 keras_version = model_weights.attrs["keras_version"]
-                # Same trick as the keras lib itself for cross-compatibility :
-                # https://github.com/keras-team/keras/blob/master/keras/saving/hdf5_format.py#L215
                 if hasattr(keras_version, 'decode'):
-                    original_keras_version = LooseVersion(keras_version.decode('utf-8'))
+                    original_keras_version = Version(keras_version.decode('utf-8'))
                 else:
-                    original_keras_version = LooseVersion(keras_version)
+                    original_keras_version = Version(keras_version)
     except Exception as e:
         raise ValueError('Could not extract the model weights from the .h5 file. : {}. Was it generated with the keras command model.save(...) ?'.format(e))
 
-    if not(LooseVersion('2.0.6') <= original_keras_version):
+    if not(Version('2.0.6') <= original_keras_version):
         raise ValueError("The version of keras you are using  ({}) has compatibility issues with tf2onnx".format(original_keras_version))
 
-    
-        
+
+
 def convert_from_keras_to_onnx(keras_model, batch_size, float_32):
     try:
-        onnx_model = from_keras(keras_model)[0]
+        if int(_keras_lib.__version__.split('.')[0]) >= 3:
+            onnx_model = _convert_keras3_model(keras_model)
+        else:
+            onnx_model = from_keras(keras_model)[0]
     except Exception as e:
         raise ValueError('Error while converting with tf2onnx: {}'.format(e))
     add_batch_size(onnx_model, batch_size)
     if float_32:
         force_type_to_float32(onnx_model)
     return onnx_model
-    
+
+def _convert_keras3_model(keras_model):
+    input_signature = [tf.TensorSpec(shape=inp.shape, dtype=inp.dtype) for inp in keras_model.inputs]
+    @tf.function(input_signature=input_signature)
+    def model_fn(*args):
+        model_inputs = list(args) if len(args) > 1 else args[0]
+        return keras_model(model_inputs, training=False)
+
+    return from_function(model_fn, input_signature=input_signature)[0]
+
 def add_batch_size(onnx_model, batch_size):
     if batch_size != -1:
         if batch_size < 0:
@@ -56,7 +70,7 @@ def force_type_to_float32(onnx_model):
         graph_input.type.tensor_type.elem_type = onnx.TensorProto.DataType.FLOAT
     for graph_output in onnx_model.graph.output:
         graph_output.type.tensor_type.elem_type = onnx.TensorProto.DataType.FLOAT
-    
+
 def get_keras_model_from_folder(folder, path):
     return try_load_model(File(get_model_file(folder, path)))
 
@@ -68,7 +82,8 @@ def try_load_model(path):
 
 def get_keras_model_from_saved_model(project_key, model):
     model_location = get_keras_model_location_from_saved_model(project_key, model)
-    check_keras_version_from_path(model_location)
+    if model_location.endswith('.h5'):
+        check_keras_version_from_path(model_location)
     return load_model(model_location)
 
 def get_keras_model_location_from_saved_model(project_key, model):
@@ -76,12 +91,14 @@ def get_keras_model_location_from_saved_model(project_key, model):
     dip_home = get_dip_home()
     model_folder = join_path(dip_home, "saved_models", project_key, model.get_id(), "versions",
                                 active_model_version["versionId"])
-    model_location = join_path(model_folder, constants.KERAS_MODEL_FILENAME)
 
-    if not isfile(model_location):
-        raise ValueError("This saved model cannot be exported to ONNX. Exporting to ONNX is only supported for models trained with the visual Deep Learning")
+    for filename in [KERAS_MODEL_FILENAME_KERAS, KERAS_MODEL_FILENAME_H5]:
+        model_location = join_path(model_folder, filename)
+        print("Searching for model at: ", model_location, "")
+        if isfile(model_location):
+            return model_location
 
-    return model_location
+    raise ValueError("This saved model cannot be exported to ONNX - no DSS model file found. Exporting to ONNX is only supported for models trained with the visual Deep Learning")
 
 def get_model_file(folder, path):
     model_stream = folder.get_download_stream(path)
@@ -96,4 +113,3 @@ def get_active_version(model):
         return None
     else:
         return filtered[0]
- 

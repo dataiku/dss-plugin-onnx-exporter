@@ -1,5 +1,10 @@
 # Changelog
 
+## [Version 1.3.0](https://github.com/dataiku/dss-plugin-onnx-exporter/releases/tag/v1.3.0) - Bugfix release - 2026-05
+
+- [Fix] Resume working properly for DSS versions 14+
+- [Enhancement] Add support for python 3.11 and 3.12
+
 ## [Version 1.2.2](https://github.com/dataiku/dss-plugin-onnx-exporter/releases/tag/v1.2.2) - Bugfix release - 2026-01
 
 - [Fix] Only accepts ML saved models

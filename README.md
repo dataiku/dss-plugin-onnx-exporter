@@ -2,6 +2,8 @@
 
 With this Dataiku DSS plugin one can export `Visual Deep Learning` and `Keras .h5 models` to ONNX format
 
+Documentation: https://doc.dataiku.com/dss/latest/machine-learning/computer-vision/onnx-exporter.html
+
 ## What is ONNX ?
 
 ONNX is an open format built to represent machine learning models for scoring (inference) purposes. ONNX defines a common set of operators - the building blocks of machine learning and deep learning models - and a common file format 

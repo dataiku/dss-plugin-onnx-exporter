@@ -1,5 +1,9 @@
 # Changelog
 
+## [Version 1.3.1](https://github.com/dataiku/dss-plugin-onnx-exporter/releases/tag/v1.3.1) - Documentation update - 2026-10
+
+- Update documentation links to the DSS reference documentation.
+
 ## [Version 1.3.0](https://github.com/dataiku/dss-plugin-onnx-exporter/releases/tag/v1.3.0) - Bugfix release - 2026-05
 
 - [Fix] Resume working properly for DSS versions 14+
